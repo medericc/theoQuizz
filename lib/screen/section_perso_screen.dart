@@ -165,86 +165,85 @@ class SectionPersoScreen extends StatelessWidget {
 
    };
 
-  final Map<String, String> persoImages = {
-    "Adam": "assets/adam.jpg",
-    "Eve": "assets/eve.jpg",
-    "Cain": "assets/cain.jpg",
-    "Abel": "assets/abel.jpg",
-    "Sett": "assets/sett.jpg",
-    "Henoch": "assets/henoch.jpg",
-    "Mathusalem": "assets/mathusalem.jpg",
-    "Noé": "assets/noe.jpg",
-    "Sem": "assets/sem.jpg",
-    "Cham": "assets/cham.jpg",
-    "Japhet": "assets/japhet.jpg",
-    "Canaan": "assets/canaan.jpg",
-  };
+final Map<String, IconData> persoIcons = {
+  "Adam": Icons.person, // Tête d'homme
+  "Eve": Icons.person_2, // Tête de femme
+  "Cain": Icons.person,
+  "Abel": Icons.person,
+  "Sett": Icons.person,
+  "Henoch": Icons.person,
+  "Mathusalem": Icons.person,
+  "Noé": Icons.person,
+  "Sem": Icons.person,
+  "Cham": Icons.person,
+  "Japhet": Icons.person,
+  "Canaan": Icons.person,
+};
+
+
 
   @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          persoName,
-          style: TextStyle(fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.brown,
-        elevation: 0,
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(
+        persoName,
+        style: TextStyle(fontWeight: FontWeight.bold),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: [
-            // Affichage de l'image (optionnel)
-            if (persoImages.containsKey(persoName))
-              Image.asset(
-                persoImages[persoName]!,
-                width: double.infinity,
-                height: 200,
-                fit: BoxFit.cover,
-              ),
+      backgroundColor: Colors.brown,
+      elevation: 0,
+    ),
+    body: SingleChildScrollView(
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Affichage de l'icône
+          Icon(
+            persoIcons[persoName] ?? Icons.help, // Icône associée ou une par défaut
+            size: 100, // Taille de l'icône
+            color: Colors.brown, // Couleur de l'icône
+          ),
 
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Card(
-                elevation: 4,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15.0),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    children: [
-                      Text(
-                        persoName,
-                        style: TextStyle(
-                          fontSize: 26,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.brown.shade700,
-                        ),
-                        textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      persoName,
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.brown.shade700,
                       ),
-                      SizedBox(height: 16),
-                      Text(
-                        persoContent[persoName] ?? "Aucune information disponible.",
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.black87,
-                          height: 1.5,
-                        ),
-                        textAlign: TextAlign.justify,
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      persoContent[persoName] ?? "Aucune information disponible.",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black87,
+                        height: 1.5,
                       ),
-                    ],
-                  ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
                 ),
               ),
             ),
-
-            SizedBox(height: 20),
-          ],
-        ),
+          ),
+          SizedBox(height: 20),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 }

@@ -20,21 +20,51 @@ class SectionSaintScreen extends StatelessWidget {
     "Véronique": "Sainte Véronique, connue pour avoir essuyé le visage du Christ sur le chemin du Calvaire.",
     "Vincent": "Saint Vincent de Paul, fondateur de la Congrégation de la Mission et protecteur des pauvres.",
   };
+final Map<String, IconData> persoIcons = {
+  "Jeanne": Icons.person_2, // Tête d'homme
+  "Marie": Icons.person_2, // Tête de femme
+  "Bernadette": Icons.person_2,
+  "Charles": Icons.person,
+  "Etienne": Icons.person,
+  "Paul": Icons.person,
+  "Pierre": Icons.person,
+  "Blandine": Icons.person_2,
+  "Vincent": Icons.person,
+  "Valentin": Icons.person,
+  "Véronique": Icons.person_2,
+  "Judith": Icons.person_2,
+};
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(saintName),
-        backgroundColor: Colors.brown,
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(saintName),
+      backgroundColor: Colors.brown,
+    ),
+    body: Padding(
+      padding: const EdgeInsets.all(16.0),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: [
+          // Affichage de l'icône correspondant au saint
+          Icon(
+            persoIcons[saintName] ?? Icons.person, // Icône par défaut si non trouvée
+            size: 50,
+            color: Colors.brown,
+          ),
+          SizedBox(height: 16),
+
+          // Affichage du texte des détails du saint
+          Text(
+            saintDetails[saintName] ?? "Aucune information disponible.",
+            style: TextStyle(fontSize: 18),
+            textAlign: TextAlign.center,
+          ),
+        ],
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Text(
-          saintDetails[saintName] ?? "Aucune information disponible.",
-          style: TextStyle(fontSize: 18),
-        ),
-      ),
-    );
-  }
+    ),
+  );
+}
+
 }
