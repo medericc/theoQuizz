@@ -1754,18 +1754,14 @@ class _CatechismeQuizScreenState extends State<CatechismeQuizScreen> {
    ],
   };
 
-  late List<Map<String, String>> _currentQuestions = [];
-late Map<String, String> _currentQuestion = {"Chargement...": "Veuillez sélectionner une catégorie."};
+  late List<Map<String, String>> _currentQuestions;
+  late Map<String, String> _currentQuestion;
 
- @override
-void initState() {
-  super.initState();
-  if (_selectedCategory == null && _questionsByCategory.isNotEmpty) {
-    _selectedCategory = _questionsByCategory.keys.first;
-    _updateQuestions(); // Assurez-vous que cette méthode met bien à jour la question
+  @override
+  void initState() {
+    super.initState();
+    _updateQuestions(); // Initialiser avec des questions
   }
-}
-
 
   void _updateQuestions() {
     setState(() {

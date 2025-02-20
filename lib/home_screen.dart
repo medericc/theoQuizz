@@ -52,20 +52,21 @@ class HomeScreen extends StatelessWidget {
               icon: Icons.menu_book,
               index: 3, // ✅ Redirige vers TheoScreen
             ),
-  SizedBox(height: 20),
 
-            _buildSectionCard(
-              context,
-              title: "Règle",
-              icon: Icons.rule,
-              index: 4, // ✅ Redirige vers RegleScreen
-            ),
 SizedBox(height: 20),
             _buildSectionCard(
               context,
               title: "Catéchisme", // ✅ Nouvelle section ajoutée
               icon: Icons.school, // Icône symbolisant l'enseignement
-              index: 5,
+              index: 4,
+            ),
+              SizedBox(height: 20),
+
+            _buildSectionCard(
+              context,
+              title: "Règle",
+              icon: Icons.rule,
+              index: 5, // ✅ Redirige vers RegleScreen
             ),
           ],
         ),

@@ -23,15 +23,19 @@ class _AppScaffoldState extends State<AppScaffold> {
     PersoScreen(),
     SaintScreen(),
     TheoScreen(),
-    RulesScreen(),
-    CatechismeQuizScreen()
+    
+    CatechismeQuizScreen(),
+    RulesScreen()
   ];
 
-  @override
-  void initState() {
-    super.initState();
-    _currentIndex = widget.selectedIndex; // ✅ Récupère l'index sélectionné
-  }
+ @override
+void initState() {
+  super.initState();
+  _currentIndex = (widget.selectedIndex >= 0 && widget.selectedIndex < _screens.length) 
+      ? widget.selectedIndex 
+      : 0; // Par défaut, afficher le premier écran si l'index est invalide
+}
+
 
   @override
   Widget build(BuildContext context) {
@@ -42,32 +46,42 @@ class _AppScaffoldState extends State<AppScaffold> {
       ),
       body: _screens[_currentIndex], // ✅ Affiche l'écran correspondant
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _currentIndex,
-        onTap: (index) {
-          setState(() {
-            _currentIndex = index;
-          });
-        },
-        type: BottomNavigationBarType.fixed,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.history),
-            label: "Histoire",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.people),
-            label: "Personnages",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.emoji_people),
-            label: "Saints",
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.menu_book),
-            label: "Théologie",
-          ),
-        ],
-      ),
+  currentIndex: _currentIndex,
+  onTap: (index) {
+    setState(() {
+      _currentIndex = index;
+    });
+  },
+  type: BottomNavigationBarType.fixed,
+  items: [
+    BottomNavigationBarItem(
+      icon: Icon(Icons.history),
+      label: "Histoire",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.people),
+      label: "Personnages",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.emoji_people),
+      label: "Saints",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.menu_book),
+      label: "Théologie",
+    ),
+     BottomNavigationBarItem(
+      icon: Icon(Icons.school),  // Ajout de Catéchisme ici
+      label: "Catéchisme",
+    ),
+    BottomNavigationBarItem(
+      icon: Icon(Icons.rule),
+      label: "Règles",
+    ),
+   
+  ],
+),
+
     );
   }
 }

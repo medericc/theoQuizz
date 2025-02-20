@@ -32,9 +32,9 @@ android {
  signingConfigs {
         release {
             storeFile file("my-release-key.jks") // Remplace par ton chemin de clé JKS
-            storePassword System.getenv("SIGNING_STORE_PASSWORD")
+            storePassword System.getenv("STORE_PASSWORD")
             keyAlias "my-key-alias"
-            keyPassword System.getenv("SIGNING_KEY_PASSWORD")
+            keyPassword System.getenv("KEY_PASSWORD")
         }
     }
     buildTypes {
