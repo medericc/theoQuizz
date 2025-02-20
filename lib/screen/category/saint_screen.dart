@@ -4,18 +4,19 @@ import '../section_saint_screen.dart'; // Importe l'écran de détails
 class SaintScreen extends StatelessWidget {
   // Liste des saints
   final List<String> sections = [
-    "Jeanne",
+    "Jeanne d'Arc",
     "Marie",
-    "Bernadette",
-    "Charles",
+    
+    
     "Etienne",
-    "Paul",
-    "Pierre",
+    "Bernadette Soubirous",
+
+    "Geneviève",
     "Blandine",
-    "Valentin",
-    "Judith",
+    "Roch",
     "Véronique",
-    "Vincent",
+    "Vincent de Paul",
+    "Louis IX",
   ];
 
   @override

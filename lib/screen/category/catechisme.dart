@@ -1754,111 +1754,123 @@ class _CatechismeQuizScreenState extends State<CatechismeQuizScreen> {
    ],
   };
 
-  late List<Map<String, String>> _currentQuestions = [];
+ late List<Map<String, String>> _currentQuestions = [];
 late Map<String, String> _currentQuestion = {"Chargement...": "Veuillez sélectionner une catégorie."};
 
- @override
+@override
 void initState() {
   super.initState();
   if (_selectedCategory == null && _questionsByCategory.isNotEmpty) {
     _selectedCategory = _questionsByCategory.keys.first;
-    _updateQuestions(); // Assurez-vous que cette méthode met bien à jour la question
+    _updateQuestions();
   }
 }
 
+void _updateQuestions() {
+  setState(() {
+    _currentQuestions = _selectedCategory == "Tous"
+        ? _questionsByCategory.entries.expand((entry) => entry.value).toList()
+        : _questionsByCategory[_selectedCategory] ?? [];
 
-  void _updateQuestions() {
-    setState(() {
-      _currentQuestions = _selectedCategory == "Tous"
-          ? _questionsByCategory.entries.expand((entry) => entry.value).toList()
-          : _questionsByCategory[_selectedCategory] ?? [];
+    _currentQuestion = _currentQuestions.isNotEmpty
+        ? _currentQuestions[_random.nextInt(_currentQuestions.length)]
+        : {"Pas de questions dans cette catégorie": "Essayez une autre !"};
+  });
+}
 
-      _currentQuestion = _currentQuestions.isNotEmpty
-          ? _currentQuestions[_random.nextInt(_currentQuestions.length)]
-          : {"Pas de questions dans cette catégorie": "Essayez une autre !"};
-    });
-  }
-
-  void _changeQuestion() {
-    setState(() {
-      if (_currentQuestions.isNotEmpty) {
-        _currentQuestion = _currentQuestions[_random.nextInt(_currentQuestions.length)];
-      }
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Quiz Catéchisme",
-          style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-        ),
-        backgroundColor: Colors.brown,
-        actions: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 8.0),
-            child: DropdownButton<String>(
-              value: _selectedCategory,
-              dropdownColor: Colors.brown[200],
-              style: TextStyle(color: Colors.white),
-              onChanged: (String? newValue) {
-                if (newValue != null) {
-                  setState(() {
-                    _selectedCategory = newValue;
-                    _updateQuestions();
-                  });
-                }
-              },
-              items: _questionsByCategory.keys.map<DropdownMenuItem<String>>((String category) {
-                return DropdownMenuItem<String>(
-                  value: category,
-                  child: Text(category, style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold)),
-                );
-              }).toList(),
-            ),
-          ),
-        ],
+void _changeQuestion() {
+  setState(() {
+    if (_currentQuestions.isNotEmpty) {
+      _currentQuestion = _currentQuestions[_random.nextInt(_currentQuestions.length)];
+    }
+  });
+}
+@override
+Widget build(BuildContext context) {
+  return Scaffold(
+    appBar: AppBar(
+      title: Text(
+        "Quiz Catéchisme",
+        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
-      body: Center(
-        child: GestureDetector(
-          onTap: _changeQuestion,
-          child: Card(
-            elevation: 6,
-            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-            margin: EdgeInsets.all(20),
-            child: Padding(
-              padding: EdgeInsets.all(20),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  Text(
-                    _currentQuestion.keys.first,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.brown),
-                  ),
-                  SizedBox(height: 10),
-                  Text(
-                    _currentQuestion.values.first,
-                    textAlign: TextAlign.center,
-                    style: TextStyle(fontSize: 18, color: Colors.black87),
-                  ),
-                  SizedBox(height: 20),
-                  ElevatedButton(
-                    onPressed: _changeQuestion,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.brown,
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+      backgroundColor: Colors.brown,
+      automaticallyImplyLeading: true, // Active le bouton de retour
+    ),
+    body: Center(
+      child: Card(
+        elevation: 6,
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+        margin: EdgeInsets.all(20),
+        child: Padding(
+          padding: EdgeInsets.all(20),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              DropdownButton<String>(
+                value: _selectedCategory,
+                dropdownColor: Colors.brown[200],
+                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                underline: Container(
+                  height: 2,
+                  color: Colors.brown, // Ligne de séparation stylisée
+                ),
+                icon: Icon(Icons.arrow_drop_down, color: Colors.brown[800], size: 30),
+                borderRadius: BorderRadius.circular(12),
+                onChanged: (String? newValue) {
+                  if (newValue != null) {
+                    setState(() {
+                      _selectedCategory = newValue;
+                      _updateQuestions();
+                    });
+                  }
+                },
+                items: _questionsByCategory.keys.map<DropdownMenuItem<String>>((String category) {
+                  return DropdownMenuItem<String>(
+                    value: category,
+                    child: Padding(
+                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                      child: Text(
+                        category,
+                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                      ),
                     ),
-                    child: Text("Nouvelle Question", style: TextStyle(color: Colors.white)),
-                  ),
-                ],
+                  );
+                }).toList(),
               ),
-            ),
+              SizedBox(height: 20),
+              GestureDetector(
+                onTap: _changeQuestion,
+                child: Column(
+                  children: [
+                    Text(
+                      _currentQuestion.keys.first,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.brown),
+                    ),
+                    SizedBox(height: 10),
+                    Text(
+                      _currentQuestion.values.first,
+                      textAlign: TextAlign.center,
+                      style: TextStyle(fontSize: 18, color: Colors.black87),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: _changeQuestion,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: Colors.brown,
+                        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                      ),
+                      child: Text("Nouvelle Question", style: TextStyle(color: Colors.white)),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ),
       ),
-    );
-  }
+    ),
+  );
+}
+
 }

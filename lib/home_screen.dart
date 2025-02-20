@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import './screen/app_scaffold.dart'; // ✅ Import AppScaffold
+import 'package:bible/screen/app_scaffold.dart'; // ✅ Import AppScaffold
+import 'package:bible/screen/category/rule_screen.dart'; // ✅ Import RulesScreen
+import 'package:bible/screen/category/catechisme.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-    title: Text(
-      'Christianisme Résumé',
-      style: TextStyle(
-        color: Colors.white, // Texte en blanc
-        fontWeight: FontWeight.bold, // Texte en gras
+        title: Text(
+          'Christianisme Résumé',
+          style: TextStyle(
+            color: Colors.white, // Texte en blanc
+            fontWeight: FontWeight.bold, // Texte en gras
+          ),
+        ),
+        centerTitle: true,
+        backgroundColor: Colors.brown, // Couleur biblique
+        elevation: 0, // Supprime l'ombre de l'AppBar
       ),
-    ),
-    centerTitle: true,
-    backgroundColor: Colors.brown, // Couleur biblique
-    elevation: 0, // Supprime l'ombre de l'AppBar
-  ),
       body: Padding(
         padding: const EdgeInsets.all(22.0),
         child: Column(
@@ -29,7 +31,6 @@ class HomeScreen extends StatelessWidget {
               index: 0, // ✅ Redirige vers HistoireScreen
             ),
             SizedBox(height: 20),
-
             _buildSectionCard(
               context,
               title: "Personnages",
@@ -37,7 +38,6 @@ class HomeScreen extends StatelessWidget {
               index: 1, // ✅ Redirige vers PersoScreen
             ),
             SizedBox(height: 20),
-
             _buildSectionCard(
               context,
               title: "Saints/Saintes",
@@ -45,28 +45,25 @@ class HomeScreen extends StatelessWidget {
               index: 2, // ✅ Redirige vers SaintScreen
             ),
             SizedBox(height: 20),
-
             _buildSectionCard(
               context,
               title: "Théologie",
               icon: Icons.menu_book,
               index: 3, // ✅ Redirige vers TheoScreen
             ),
-
-SizedBox(height: 20),
+            SizedBox(height: 20),
             _buildSectionCard(
               context,
               title: "Catéchisme", // ✅ Nouvelle section ajoutée
               icon: Icons.school, // Icône symbolisant l'enseignement
               index: 4,
             ),
-              SizedBox(height: 20),
-
+            SizedBox(height: 20),
             _buildSectionCard(
               context,
               title: "Règle",
               icon: Icons.rule,
-              index: 5, // ✅ Redirige vers RegleScreen
+              index: -1, // ✅ Redirige vers RulesScreen
             ),
           ],
         ),
@@ -83,12 +80,16 @@ SizedBox(height: 20),
       child: InkWell(
         borderRadius: BorderRadius.circular(15.0), // Bords arrondis pour l'effet de clic
         onTap: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AppScaffold(selectedIndex: index), // ✅ Ouvre AppScaffold avec l'index
-            ),
-          );
+          if (title == "Règle") {
+            Navigator.push(context, MaterialPageRoute(builder: (context) => RulesScreen())); // ✅ Correction de l'appel
+          } else {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AppScaffold(selectedIndex: index), // ✅ Ouvre AppScaffold avec l'index
+              ),
+            );
+          }
         },
         child: Padding(
           padding: const EdgeInsets.all(20.0), // Plus de padding

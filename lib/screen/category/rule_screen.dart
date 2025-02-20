@@ -14,39 +14,48 @@ class RulesScreen extends StatelessWidget {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.brown, // Couleur biblique
+        backgroundColor: Colors.brown,
         elevation: 0,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: SingleChildScrollView(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                "Christianisme Résumé",
-                style: TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.bold,
-                  color: Colors.brown,
+      body: Center(  // Ajout d'un Center pour centrer verticalement
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center, // Centre le contenu verticalement
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Text(
+                  "Cette application propose un résumé de la Bible avec des explications théologiques, classées par sections :",
+                  style: TextStyle(fontSize: 18, color: Colors.brown),
+                  textAlign: TextAlign.center,
                 ),
-              ),
-              SizedBox(height: 10),
-              Text(
-                "Cette application propose un résumé de la Bible avec des explications théologiques, classées par sections :",
-                style: TextStyle(fontSize: 18),
-              ),
-              SizedBox(height: 10),
-              _buildBulletPoint("Genèse, Exode, Juges, Rois, Exil, etc."),
-              _buildBulletPoint("Résumé des personnages bibliques"),
-              _buildBulletPoint("Vie des Saints et Saintes"),
-              _buildBulletPoint("Résumé des livres bibliques avec une approche théologique"),
-              SizedBox(height: 20),
-              Text(
-                "L'objectif est d'offrir un accès simple et structuré aux grandes lignes de la foi chrétienne.",
-                style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold, color: Colors.brown),
-              ),
-            ],
+                SizedBox(height: 24),
+                _buildBulletPoint("Genèse, Exode, Juges, Rois, Exil, etc."),
+                _buildBulletPoint("Résumé des personnages bibliques"),
+                _buildBulletPoint("Vie des Saints et Saintes"),
+                _buildBulletPoint("Résumé des livres bibliques avec une approche théologique"),
+                SizedBox(height: 40),
+                Container(
+                  padding: EdgeInsets.all(20),
+                  margin: EdgeInsets.symmetric(horizontal: 16),
+                  decoration: BoxDecoration(
+                    color: Colors.brown.withOpacity(0.1),
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  child: Text(
+                    "L'objectif est d'offrir un accès simple et structuré aux grandes lignes de la foi chrétienne.",
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.brown,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
+                SizedBox(height: 40),
+              ],
+            ),
           ),
         ),
       ),
@@ -55,16 +64,16 @@ class RulesScreen extends StatelessWidget {
 
   Widget _buildBulletPoint(String text) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4.0),
+      padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 16.0),
       child: Row(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Icon(Icons.check, color: Colors.brown),
-          SizedBox(width: 8),
+          Icon(Icons.check_circle, color: Colors.brown, size: 26),
+          SizedBox(width: 14),
           Expanded(
             child: Text(
               text,
-              style: TextStyle(fontSize: 16),
+              style: TextStyle(fontSize: 16, color: Colors.brown),
             ),
           ),
         ],

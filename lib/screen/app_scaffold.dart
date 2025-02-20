@@ -24,8 +24,7 @@ class _AppScaffoldState extends State<AppScaffold> {
     SaintScreen(),
     TheoScreen(),
     
-    CatechismeQuizScreen(),
-    RulesScreen()
+    CatechismeQuizScreen()
   ];
 
  @override
@@ -74,10 +73,7 @@ void initState() {
       icon: Icon(Icons.school),  // Ajout de Catéchisme ici
       label: "Catéchisme",
     ),
-    BottomNavigationBarItem(
-      icon: Icon(Icons.rule),
-      label: "Règles",
-    ),
+   
    
   ],
 ),
