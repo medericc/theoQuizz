@@ -33,37 +33,68 @@ final Map<String, IconData> persoIcons = {
   "Véronique": Icons.person_2,
   
 };
-
 @override
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      title: Text(saintName),
+      title: Text(
+        saintName,
+        style: TextStyle(fontWeight: FontWeight.bold),
+      ),
       backgroundColor: Colors.brown,
+      elevation: 0,
     ),
-    body: Padding(
-      padding: const EdgeInsets.all(16.0),
+    body: SingleChildScrollView(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          // Affichage de l'icône correspondant au saint
+          // Icône du saint
           Icon(
-            persoIcons[saintName] ?? Icons.person, // Icône par défaut si non trouvée
-            size: 50,
+            persoIcons[saintName] ?? Icons.person, // Icône associée ou par défaut
+            size: 100,
             color: Colors.brown,
           ),
-          SizedBox(height: 16),
 
-          // Affichage du texte des détails du saint
-          Text(
-            saintDetails[saintName] ?? "Aucune information disponible.",
-            style: TextStyle(fontSize: 18),
-            textAlign: TextAlign.center,
+          Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Card(
+              elevation: 4,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(15.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Text(
+                      saintName,
+                      style: TextStyle(
+                        fontSize: 26,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.brown.shade700,
+                      ),
+                      textAlign: TextAlign.center,
+                    ),
+                    SizedBox(height: 16),
+                    Text(
+                      saintDetails[saintName] ?? "Aucune information disponible.",
+                      style: TextStyle(
+                        fontSize: 18,
+                        color: Colors.black87,
+                        height: 1.5,
+                      ),
+                      textAlign: TextAlign.justify,
+                    ),
+                  ],
+                ),
+              ),
+            ),
           ),
+          SizedBox(height: 20),
         ],
       ),
     ),
   );
 }
-
 }
