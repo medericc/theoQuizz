@@ -5,15 +5,15 @@ class HistoireScreen extends StatelessWidget {
   // Liste des sous-sections de l'histoire
   final List<String> sections = [
     "Genèse",
-    "Noé",
-    "Abraham",
+    "Déluge",
+    "Alliance",
     "Israël",
-    "Moïse",
+    "Exode",
     "Josué",
     "Juges",
-    "Samuel",
-    "David",
-    "Roi",
+    "Royaume",
+    "Royaume d'Israël",
+    "Royaume de Juda",
     "Captivité",
     "Retour",
   ];

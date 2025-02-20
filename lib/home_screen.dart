@@ -6,14 +6,21 @@ class HomeScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Histoire de la Bible'),
-        centerTitle: true,
-        backgroundColor: Colors.brown, // Couleur biblique
-        elevation: 0, // Supprime l'ombre de l'AppBar
+    title: Text(
+      'Christianisme Résumé',
+      style: TextStyle(
+        color: Colors.white, // Texte en blanc
+        fontWeight: FontWeight.bold, // Texte en gras
       ),
+    ),
+    centerTitle: true,
+    backgroundColor: Colors.brown, // Couleur biblique
+    elevation: 0, // Supprime l'ombre de l'AppBar
+  ),
       body: Padding(
         padding: const EdgeInsets.all(22.0),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _buildSectionCard(
               context,
@@ -44,6 +51,21 @@ class HomeScreen extends StatelessWidget {
               title: "Théologie",
               icon: Icons.menu_book,
               index: 3, // ✅ Redirige vers TheoScreen
+            ),
+  SizedBox(height: 20),
+
+            _buildSectionCard(
+              context,
+              title: "Règle",
+              icon: Icons.rule,
+              index: 4, // ✅ Redirige vers RegleScreen
+            ),
+SizedBox(height: 20),
+            _buildSectionCard(
+              context,
+              title: "Catéchisme", // ✅ Nouvelle section ajoutée
+              icon: Icons.school, // Icône symbolisant l'enseignement
+              index: 5,
             ),
           ],
         ),

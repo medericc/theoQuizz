@@ -1,3 +1,5 @@
+import 'package:bible/screen/category/catechisme.dart';
+import 'package:bible/screen/category/rule_screen.dart';
 import 'package:flutter/material.dart';
 import 'category/histoire_screen.dart';
 import 'category/perso_screen.dart';
@@ -21,6 +23,8 @@ class _AppScaffoldState extends State<AppScaffold> {
     PersoScreen(),
     SaintScreen(),
     TheoScreen(),
+    RulesScreen(),
+    CatechismeQuizScreen()
   ];
 
   @override

@@ -2,8 +2,13 @@ import 'package:flutter/material.dart';
 
 class SectionTheoScreen extends StatelessWidget {
   final String sectionName;
+  final String bookSummary;
 
-  const SectionTheoScreen({Key? key, required this.sectionName}) : super(key: key);
+  const SectionTheoScreen({
+    Key? key,
+    required this.sectionName,
+    required this.bookSummary,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +30,7 @@ class SectionTheoScreen extends StatelessWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Text(
-            "Contenu détaillé de la section : $sectionName",
+            bookSummary,
             style: TextStyle(
               fontSize: 18,
               color: Colors.black87,
