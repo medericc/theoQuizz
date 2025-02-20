@@ -1795,67 +1795,71 @@ Widget build(BuildContext context) {
         style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
       ),
       backgroundColor: Colors.brown,
-      automaticallyImplyLeading: true, // Active le bouton de retour
+      automaticallyImplyLeading: true,
     ),
     body: Center(
-      child: Card(
-        elevation: 6,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
-        margin: EdgeInsets.all(20),
-        child: Padding(
-          padding: EdgeInsets.all(20),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              DropdownButton<String>(
-                value: _selectedCategory,
-                dropdownColor: Colors.brown[200],
-                style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
-                underline: Container(
-                  height: 2,
-                  color: Colors.brown, // Ligne de séparation stylisée
-                ),
-                icon: Icon(Icons.arrow_drop_down, color: Colors.brown[800], size: 30),
-                borderRadius: BorderRadius.circular(12),
-                onChanged: (String? newValue) {
-                  if (newValue != null) {
-                    setState(() {
-                      _selectedCategory = newValue;
-                      _updateQuestions();
-                    });
-                  }
-                },
-                items: _questionsByCategory.keys.map<DropdownMenuItem<String>>((String category) {
-                  return DropdownMenuItem<String>(
-                    value: category,
-                    child: Padding(
-                      padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-                      child: Text(
-                        category,
-                        style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
-                      ),
+      child: SingleChildScrollView( // Ajout pour éviter les débordements
+        child: ConstrainedBox(
+          constraints: BoxConstraints(
+            maxWidth: MediaQuery.of(context).size.width * 0.9, // Limite la largeur
+          ),
+          child: Card(
+            elevation: 6,
+            shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0)),
+            margin: EdgeInsets.all(20),
+            child: Padding(
+              padding: EdgeInsets.all(20),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.center, // Centre le contenu
+                children: [
+                  DropdownButton<String>(
+                    value: _selectedCategory,
+                    dropdownColor: Colors.brown[200],
+                    style: TextStyle(color: Colors.black, fontWeight: FontWeight.bold),
+                    underline: Container(
+                      height: 2,
+                      color: Colors.brown,
                     ),
-                  );
-                }).toList(),
-              ),
-              SizedBox(height: 20),
-              GestureDetector(
-                onTap: _changeQuestion,
-                child: Column(
-                  children: [
-                    Text(
-                      _currentQuestion.keys.first,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.brown),
-                    ),
-                    SizedBox(height: 10),
-                    Text(
-                      _currentQuestion.values.first,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(fontSize: 18, color: Colors.black87),
-                    ),
-                    SizedBox(height: 20),
-                    ElevatedButton(
+                    icon: Icon(Icons.arrow_drop_down, color: Colors.brown[800], size: 30),
+                    borderRadius: BorderRadius.circular(12),
+                    onChanged: (String? newValue) {
+                      if (newValue != null) {
+                        setState(() {
+                          _selectedCategory = newValue;
+                          _updateQuestions();
+                        });
+                      }
+                    },
+                    items: _questionsByCategory.keys.map<DropdownMenuItem<String>>((String category) {
+                      return DropdownMenuItem<String>(
+                        value: category,
+                        child: Padding(
+                          padding: EdgeInsets.symmetric(vertical: 10, horizontal: 15),
+                          child: Text(
+                            category,
+                            style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+                          ),
+                        ),
+                      );
+                    }).toList(),
+                  ),
+                  SizedBox(height: 20),
+                  Text(
+                    _currentQuestion.keys.first,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 22, fontWeight: FontWeight.bold, color: Colors.brown),
+                  ),
+                  SizedBox(height: 10),
+                  Text(
+                    _currentQuestion.values.first,
+                    textAlign: TextAlign.center,
+                    style: TextStyle(fontSize: 18, color: Colors.black87),
+                  ),
+                  SizedBox(height: 20),
+                  SizedBox(
+                    width: double.infinity, // Prend toute la largeur de la carte
+                    child: ElevatedButton(
                       onPressed: _changeQuestion,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.brown,
@@ -1863,10 +1867,10 @@ Widget build(BuildContext context) {
                       ),
                       child: Text("Nouvelle Question", style: TextStyle(color: Colors.white)),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
+            ),
           ),
         ),
       ),
