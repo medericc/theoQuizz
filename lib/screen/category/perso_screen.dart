@@ -1,7 +1,15 @@
 import 'package:flutter/material.dart';
 import '../section_perso_screen.dart'; // Importe l'écran de détails
 
-class PersoScreen extends StatelessWidget {
+class PersoScreen extends StatefulWidget {
+  @override
+  _PersoScreenState createState() => _PersoScreenState();
+}
+
+class _PersoScreenState extends State<PersoScreen> {
+  TextEditingController _searchController = TextEditingController();
+  String _searchText = "";
+
   // Liste des personnages
   final List<String> sections = [
     "Adam",
@@ -28,7 +36,7 @@ class PersoScreen extends StatelessWidget {
   "Zabulon",
   "Joseph",
   "Benjamin",
-  "Manasse",
+  "Manassé (Joseph)",
   "Ephraim",
   "Pharaon",
   "Moise",
@@ -49,6 +57,7 @@ class PersoScreen extends StatelessWidget {
 "Jéhu (roi)",
 "Joachaz",
 "Joas",
+"Manassé (roi)",
 "Osée (roi)",
 "Osée (prophète)",
 "Shishak",
@@ -81,32 +90,42 @@ class PersoScreen extends StatelessWidget {
 "Jérémie",
 "Job",
 "Esther",
-"Tobie","Judith","Bath-Shéba"
+"Tobie","Judith","Bath-Shéba","Ésaie"
 
 
 
   ];
 
-  @override
+ @override
   Widget build(BuildContext context) {
+    // Filtrer la liste des personnages en fonction du texte de recherche
+    List<String> filteredPersos = sections
+        .where((perso) => perso.toLowerCase().contains(_searchText.toLowerCase()))
+        .toList();
+
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          "Personnages",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
+        automaticallyImplyLeading: false, // Supprime la flèche de retour
+        title: TextField(
+          controller: _searchController,
+          decoration: InputDecoration(
+            hintText: "Rechercher un personnage...",
+            border: InputBorder.none,
+            hintStyle: TextStyle(color: Colors.white70),
           ),
+          style: TextStyle(color: Colors.white),
+          onChanged: (value) {
+            setState(() {
+              _searchText = value;
+            });
+          },
         ),
-        centerTitle: true,
         backgroundColor: Colors.brown,
-        elevation: 0,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(
-          itemCount: sections.length,
+          itemCount: filteredPersos.length,
           itemBuilder: (context, index) {
             return Card(
               elevation: 4,
@@ -120,7 +139,7 @@ class PersoScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => SectionPersoScreen(persoName: sections[index]),
+                      builder: (context) => SectionPersoScreen(persoName: filteredPersos[index]),
                     ),
                   );
                 },
@@ -136,7 +155,7 @@ class PersoScreen extends StatelessWidget {
                       SizedBox(width: 16),
                       Expanded(
                         child: Text(
-                          sections[index],
+                          filteredPersos[index],
                           style: TextStyle(
                             fontSize: 20,
                             fontWeight: FontWeight.bold,

@@ -21,19 +21,7 @@ class HistoireScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "Histoire",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.brown, // Couleur biblique
-        elevation: 0, // Supprime l'ombre de l'AppBar
-      ),
+    
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView.builder(

@@ -1,4 +1,4 @@
-package com.example.bible
+package com.memo.chretien
 
 import io.flutter.embedding.android.FlutterActivity
 

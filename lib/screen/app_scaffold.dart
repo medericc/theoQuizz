@@ -1,5 +1,5 @@
-import 'package:bible/screen/category/catechisme.dart';
-import 'package:bible/screen/category/rule_screen.dart';
+import '../screen/category/catechisme.dart';
+import '../screen/category/rule_screen.dart';
 import 'package:flutter/material.dart';
 import 'category/histoire_screen.dart';
 import 'category/perso_screen.dart';
@@ -39,13 +39,24 @@ void initState() {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Histoire de la Bible'),
-        centerTitle: true,
+     appBar: AppBar(
+    title: Text(
+      'Histoire de la Bible',
+      style: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
       ),
+    ),
+    centerTitle: true,
+    backgroundColor: Colors.brown, // Même couleur que l'autre AppBar
+    elevation: 0, // Supprime l'ombre
+  ),
       body: _screens[_currentIndex], // ✅ Affiche l'écran correspondant
       bottomNavigationBar: BottomNavigationBar(
   currentIndex: _currentIndex,
+  selectedItemColor: Colors.brown,
+
   onTap: (index) {
     setState(() {
       _currentIndex = index;

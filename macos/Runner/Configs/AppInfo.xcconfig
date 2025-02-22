@@ -8,7 +8,7 @@
 PRODUCT_NAME = bible
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.example.bible
+PRODUCT_BUNDLE_IDENTIFIER = com.memo.chretien
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 com.example. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 com.memo. All rights reserved.

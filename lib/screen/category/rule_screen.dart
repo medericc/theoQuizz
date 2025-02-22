@@ -4,19 +4,24 @@ class RulesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          "À propos de l'application",
-          style: TextStyle(
-            fontSize: 24,
-            fontWeight: FontWeight.bold,
-            color: Colors.white,
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.brown,
-        elevation: 0,
+    appBar: AppBar(
+  title: Padding(
+    padding: EdgeInsets.symmetric(vertical: 10.0), // ✅ Ajoute plus d’espace
+    child: Text(
+      "À propos de l'application",
+      style: TextStyle(
+        fontSize: 24,
+        fontWeight: FontWeight.bold,
+        color: Colors.white,
       ),
+    ),
+  ),
+  centerTitle: true,
+  backgroundColor: Colors.brown,
+  elevation: 0,
+  toolbarHeight: 80, // ✅ Augmente la hauteur de l'AppBar pour plus d'espace
+),
+
       body: Center(  // Ajout d'un Center pour centrer verticalement
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 32.0, vertical: 24.0),

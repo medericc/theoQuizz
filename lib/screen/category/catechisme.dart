@@ -1789,14 +1789,7 @@ void _changeQuestion() {
 @override
 Widget build(BuildContext context) {
   return Scaffold(
-    appBar: AppBar(
-      title: Text(
-        "Quiz Catéchisme",
-        style: TextStyle(color: Colors.white, fontWeight: FontWeight.bold),
-      ),
-      backgroundColor: Colors.brown,
-      automaticallyImplyLeading: true,
-    ),
+   
     body: Center(
       child: SingleChildScrollView( // Ajout pour éviter les débordements
         child: ConstrainedBox(

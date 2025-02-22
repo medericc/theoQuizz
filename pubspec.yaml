@@ -1,4 +1,4 @@
-name: bible
+name: memo_chretien
 description: "A new Flutter project."
 
 publish_to: 'none' 
@@ -11,17 +11,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
- 
+  google_fonts: ^6.2.1
   cupertino_icons: ^1.0.8
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  flutter_launcher_icons: ^0.13.1
   flutter_lints: ^4.0.0
 
 flutter:
 
   uses-material-design: true
-
+flutter_launcher_icons:
+  android: true
+  ios: true
+  image_path: "assets/icon.png"
   

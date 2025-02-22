@@ -1,24 +1,40 @@
 import 'package:flutter/material.dart';
-import 'package:bible/screen/app_scaffold.dart'; // ✅ Import AppScaffold
-import 'package:bible/screen/category/rule_screen.dart'; // ✅ Import RulesScreen
-import 'package:bible/screen/category/catechisme.dart';
-
+import './screen/app_scaffold.dart'; // ✅ Import AppScaffold
+import './screen/category/rule_screen.dart'; // ✅ Import RulesScreen
+import './screen/category/catechisme.dart';
+import 'package:google_fonts/google_fonts.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          'Christianisme Résumé',
-          style: TextStyle(
-            color: Colors.white, // Texte en blanc
-            fontWeight: FontWeight.bold, // Texte en gras
-          ),
+appBar: AppBar(
+  title: Padding(
+    padding: EdgeInsets.symmetric(horizontal: 10.0, vertical: 10.0), // ✅ Ajuste l'espace
+    child: Text(
+      'CHRISTIANISME',
+      style: GoogleFonts.bebasNeue(
+        textStyle: TextStyle(
+          color: Colors.white,
+          fontWeight: FontWeight.bold, 
+          fontSize: 35, 
+          letterSpacing: 2, 
+          shadows: [
+            Shadow(
+              blurRadius: 6.0,
+              color: Colors.black45, 
+              offset: Offset(3, 3),
+            ),
+          ],
         ),
-        centerTitle: true,
-        backgroundColor: Colors.brown, // Couleur biblique
-        elevation: 0, // Supprime l'ombre de l'AppBar
       ),
+    ),
+  ),
+  centerTitle: true,
+  backgroundColor: Colors.brown,
+  elevation: 6,
+  toolbarHeight: 80, // ✅ Augmente la hauteur de l'AppBar pour plus d'espace
+),
+
       body: Padding(
         padding: const EdgeInsets.all(22.0),
         child: Column(
