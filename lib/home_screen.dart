@@ -16,7 +16,7 @@ appBar: AppBar(
         textStyle: TextStyle(
           color: Colors.white,
           fontWeight: FontWeight.bold, 
-          fontSize: 35, 
+          fontSize: 31, 
           letterSpacing: 2, 
           shadows: [
             Shadow(
