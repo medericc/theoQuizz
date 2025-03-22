@@ -1,0 +1,8 @@
+android/
+ios/
+macos/
+windows/
+linux/
+build/
+.git/
+.gitignore
