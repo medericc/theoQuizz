@@ -4,7 +4,10 @@
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/index.html"
+      "dest": "/$1"
+    },
+    {
+      "handle": "filesystem"
     }
   ]
 }
