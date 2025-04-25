@@ -1,10 +1,18 @@
 {
-    "builds": [
-      {
-        "src": "pubspec.yaml",
-        "use": "@vercel/static-build",
-        "config": { "distDir": "build/web" }
+  "builds": [
+    {
+      "src": "pubspec.yaml",
+      "use": "@vercel/static-build",
+      "config": {
+        "distDir": "build/web",
+        "buildCommand": "./vercel-build.sh"
       }
-    ]
-  }
-  
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "/index.html"
+    }
+  ]
+}
