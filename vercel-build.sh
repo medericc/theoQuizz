@@ -1,15 +1,22 @@
 #!/bin/bash
 
-# Install Flutter
+# Télécharger Flutter (dernière version stable)
 git clone https://github.com/flutter/flutter.git -b stable --depth 1
-export PATH="$PATH:$PWD/flutter/bin"
 
-# Enable Flutter Web
+# Ajouter Flutter au PATH
+export PATH="$PWD/flutter/bin:$PATH"
+
+# S'assurer que Flutter est prêt
+flutter doctor
+
+# Activer le support Web
 flutter config --enable-web
+
+# Précharger pour le web
 flutter precache --web
 
-# Get dependencies
+# Installer les dépendances
 flutter pub get
 
-# Build Flutter Web
+# Construire pour le web
 flutter build web --release
